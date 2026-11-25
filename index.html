@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#F5F0E4">
+<meta name="description" content="40道生活化选择题，测出你灵魂里的中国历史人物底色。趣味人格测试，仅供娱乐。">
+<title>测测你的灵魂对应哪位中国历史人物</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+/* ===================== 基础与变量 ===================== */
+:root{
+  --paper:#F5F0E4;
+  --paper-2:#EFE8D8;
+  --ink:#23211D;
+  --ink-2:#5C574D;
+  --ink-3:#8C8577;
+  --cinnabar:#9E2B25;
+  --cinnabar-soft:#C0564F;
+  --jade:#3E5C54;
+  --gold:#B08A4C;
+  --line:rgba(35,33,29,.14);
+  --shadow:0 18px 46px -22px rgba(40,32,20,.42);
+  --serif:"Noto Serif SC","Songti SC","STSong",serif;
+  --sans:"Noto Sans SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  font-family:var(--sans);
+  color:var(--ink);
+  background:var(--paper);
+  min-height:100dvh;
+  overflow-x:hidden;
+  position:relative;
+  line-height:1.7;
+}
+/* 宣纸质感：三层极淡纹理 */
+body::before{
+  content:"";
+  position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(176,138,76,.10), transparent 42%),
+    radial-gradient(circle at 84% 92%, rgba(62,92,84,.10), transparent 46%),
+    radial-gradient(1200px 700px at 50% 40%, #F8F4E9 0%, #F2ECDE 62%, #EBE3D2 100%);
+}
+body::after{
+  content:"";
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(120,104,74,.055) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(120,104,74,.045) 0 1px, transparent 1px 4px);
+  mix-blend-mode:multiply;
+}
+img{max-width:100%;display:block;}
+
+/* ===================== 版心 ===================== */
+.shell{
+  width:100%;
+  max-width:560px;
+  margin:0 auto;
+  padding:0 20px calc(28px + env(safe-area-inset-bottom));
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+}
+.view{width:100%;flex:1;display:flex;flex-direction:column;}
+.view[hidden]{display:none !important;}
+
+/* ===================== 通用小件 ===================== */
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--line) 18%,var(--line) 82%,transparent);}
+.kicker{
+  font-family:var(--sans);
+  font-size:11px;letter-spacing:.34em;
+  color:var(--ink-3);
+  text-align:center;
+}
+.btn{
+  appearance:none;border:none;cursor:pointer;
+  font-family:var(--serif);
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  transition:transform .26s cubic-bezier(.3,1.2,.4,1),box-shadow .26s,background .26s,color .26s,opacity .26s;
+}
+.btn:active{transform:scale(.972);}
+
+/* ===================== 首页 ===================== */
+.intro{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:calc(34px + env(safe-area-inset-top)) 0 24px;
+  text-align:center;
+  animation:rise .8s cubic-bezier(.22,.9,.28,1) both;
+}
+.intro-seal{
+  width:66px;height:66px;margin:0 auto 26px;
+  border:1.5px solid var(--cinnabar);
+  border-radius:4px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--cinnabar);
+  font-family:var(--serif);font-weight:700;
+  font-size:17px;letter-spacing:.14em;
+  transform:rotate(-3.5deg);
+  box-shadow:inset 0 0 0 3px rgba(245,240,228,.9),inset 0 0 0 4px rgba(158,43,37,.28);
+  opacity:.92;
+}
+.intro-seal b{display:block;line-height:1.18;font-weight:700;}
+.intro h1{
+  font-family:var(--serif);
+  font-weight:900;
+  font-size:clamp(25px,7.4vw,33px);
+  line-height:1.46;
+  letter-spacing:.06em;
+  color:var(--ink);
+}
+.intro h1 .hl{
+  color:var(--cinnabar);
+  position:relative;
+  white-space:nowrap;
+}
+.intro h1 .hl::after{
+  content:"";position:absolute;left:0;right:0;bottom:-2px;height:6px;
+  background:linear-gradient(90deg,rgba(158,43,37,.16),rgba(158,43,37,.3));
+  border-radius:50%/60% 42% 58% 40%;
+}
+.intro .lead{
+  margin:20px auto 0;
+  max-width:320px;
+  font-size:13.5px;color:var(--ink-2);line-height:2;
+  letter-spacing:.02em;
+}
+.intro .meta{
+  margin:26px auto 0;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  font-size:11.5px;letter-spacing:.12em;color:var(--ink-3);
+}
+.intro .meta i{width:3px;height:3px;border-radius:50%;background:var(--gold);}
+.intro-start{
+  margin:34px auto 0;
+  width:min(260px,72%);
+  padding:15px 26px;
+  border-radius:2px;
+  background:var(--cinnabar);
+  color:#FDF8EC;
+  font-size:15.5px;letter-spacing:.22em;font-weight:600;
+  box-shadow:0 14px 26px -14px rgba(158,43,37,.72),inset 0 0 0 1px rgba(255,255,255,.12);
+}
+.intro-start:hover{background:#8E241F;}
+.intro-note{
+  margin:18px auto 0;
+  font-size:11.5px;color:var(--ink-3);letter-spacing:.04em;line-height:1.9;
+  max-width:300px;
+}
+.intro-foot{
+  margin-top:auto;padding-top:30px;
+  font-size:10.5px;letter-spacing:.2em;color:var(--ink-3);opacity:.8;
+}
+
+/* ===================== 答题页 ===================== */
+.quiz{padding:calc(18px + env(safe-area-inset-top)) 0 10px;display:flex;flex-direction:column;flex:1;}
+.quiz-head{
+  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  font-size:12px;letter-spacing:.1em;color:var(--ink-2);
+}
+.qcount{font-family:var(--serif);}
+.qcount em{
+  font-style:normal;color:var(--cinnabar);font-weight:700;font-size:17px;letter-spacing:.02em;
+}
+.qcount span{color:var(--ink-3);font-size:11.5px;}
+.back-btn{
+  appearance:none;border:none;background:transparent;cursor:pointer;
+  font-family:var(--sans);font-size:11.5px;letter-spacing:.1em;color:var(--ink-3);
+  padding:6px 2px;transition:color .22s,opacity .22s;
+}
+.back-btn:hover{color:var(--cinnabar);}
+.back-btn[disabled]{opacity:0;pointer-events:none;}
+
+.progress{
+  position:relative;height:3px;margin:14px 0 30px;
+  background:rgba(35,33,29,.10);
+  border-radius:3px;
+}
+.progress .fill{
+  position:absolute;left:0;top:0;bottom:0;width:0%;
+  background:linear-gradient(90deg,#B9905A,var(--cinnabar) 88%);
+  border-radius:3px;
+  transition:width .55s cubic-bezier(.3,.9,.3,1);
+}
+.progress .dot{
+  position:absolute;top:50%;left:0;
+  width:9px;height:9px;margin:-4.5px 0 0 -4.5px;
+  border-radius:50%;
+  background:#FDF8EC;
+  box-shadow:0 0 0 1.5px var(--cinnabar),0 0 10px rgba(158,43,37,.45);
+  transition:left .55s cubic-bezier(.3,.9,.3,1);
+}
+
+.qcard{animation:cardIn .5s cubic-bezier(.22,.9,.3,1) both;}
+.qcard.out{animation:cardOut .26s ease both;}
+.qtag{
+  font-family:var(--serif);font-size:11px;letter-spacing:.3em;color:var(--gold);
+  margin-bottom:12px;
+}
+.qtag::after{
+  content:"";display:inline-block;width:26px;height:1px;background:var(--gold);
+  vertical-align:middle;margin-left:10px;opacity:.6;
+}
+.qtext{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(19px,5.3vw,22px);
+  line-height:1.66;
+  letter-spacing:.03em;
+  color:var(--ink);
+  margin-bottom:26px;
+  min-height:4.4em;
+}
+.opts{display:flex;flex-direction:column;gap:11px;}
+.opt{
+  position:relative;
+  display:flex;align-items:flex-start;gap:13px;
+  width:100%;text-align:left;
+  padding:15px 16px;
+  background:rgba(255,252,243,.62);
+  border:1px solid rgba(35,33,29,.13);
+  border-radius:2px;
+  cursor:pointer;
+  font-family:var(--sans);
+  font-size:14.5px;line-height:1.72;
+  color:var(--ink);
+  transition:border-color .26s,background .26s,transform .2s,box-shadow .26s,color .26s;
+}
+.opt:hover{
+  background:rgba(255,253,247,.95);
+  border-color:rgba(158,43,37,.42);
+  transform:translateX(2px);
+  box-shadow:0 10px 22px -18px rgba(60,45,25,.7);
+}
+.opt .num{
+  flex:0 0 auto;
+  font-family:var(--serif);
+  font-size:12px;font-weight:600;
+  color:var(--ink-3);
+  width:20px;height:20px;line-height:20px;text-align:center;
+  border:1px solid rgba(35,33,29,.18);
+  border-radius:1px;
+  margin-top:4px;
+  transition:color .26s,border-color .26s,background .26s;
+}
+.opt.sel{
+  border-color:var(--cinnabar);
+  background:rgba(158,43,37,.07);
+  box-shadow:inset 0 0 0 1px rgba(158,43,37,.28);
+  transform:translateX(2px);
+}
+.opt.sel .num{
+  color:#FDF8EC;background:var(--cinnabar);border-color:var(--cinnabar);
+}
+.quiz-hint{
+  margin-top:auto;padding-top:22px;
+  text-align:center;font-size:10.5px;letter-spacing:.16em;color:var(--ink-3);opacity:.72;
+}
+
+/* ===================== 结果页 ===================== */
+.result{padding:calc(16px + env(safe-area-inset-top)) 0 0;animation:rise .62s cubic-bezier(.22,.9,.3,1) both;}
+.result-top{text-align:center;margin-bottom:16px;}
+.result-top .tag{
+  font-family:var(--serif);font-size:11px;letter-spacing:.42em;color:var(--ink-3);
+}
+
+/* 分享卡 */
+.poster{
+  position:relative;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(176,138,76,.10), transparent 46%),
+    linear-gradient(180deg,#FFFDF6 0%,#FAF4E6 100%);
+  border:1px solid rgba(35,33,29,.14);
+  border-radius:3px;
+  padding:30px 22px 30px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.poster::before{
+  content:"";position:absolute;inset:9px;pointer-events:none;
+  border:1px solid rgba(176,138,76,.34);
+  border-radius:1px;
+}
+.poster .corner{position:absolute;width:16px;height:16px;pointer-events:none;opacity:.55;}
+.corner::before,.corner::after{content:"";position:absolute;background:var(--gold);}
+.corner::before{width:16px;height:1px;}
+.corner::after{width:1px;height:16px;}
+.c-tl{top:16px;left:16px;}
+.c-tr{top:16px;right:16px;transform:rotate(90deg);}
+.c-bl{bottom:16px;left:16px;transform:rotate(-90deg);}
+.c-br{bottom:16px;right:16px;transform:rotate(180deg);}
+
+.poster-body{position:relative;z-index:2;}
+.p-label{
+  text-align:center;font-family:var(--serif);font-size:10.5px;letter-spacing:.44em;
+  color:var(--ink-3);
+}
+.p-label b{display:block;font-weight:400;}
+.p-hero{
+  display:flex;align-items:center;gap:16px;
+  margin:22px 0 20px;
+  padding:0 4px;
+}
+.seal-big{
+  flex:0 0 auto;
+  width:62px;height:84px;
+  border:2px solid var(--cinnabar);
+  border-radius:3px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--cinnabar);
+  font-family:var(--serif);font-weight:900;
+  font-size:19px;letter-spacing:.1em;
+  line-height:1.16;
+  transform:rotate(-2.5deg);
+  box-shadow:inset 0 0 0 3px #FFFDF7,inset 0 0 0 4px rgba(158,43,37,.3);
+  background:rgba(158,43,37,.045);
+}
+.p-name{flex:1;min-width:0;}
+.p-name h2{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(28px,8vw,34px);
+  letter-spacing:.12em;line-height:1.24;
+  color:var(--ink);
+}
+.p-name .sub{
+  margin-top:7px;font-size:11.5px;letter-spacing:.14em;color:var(--ink-2);
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+}
+.p-name .sub .arche{
+  color:#FFF8EA;background:var(--cinnabar);
+  padding:2.5px 8px;border-radius:1px;
+  font-size:10.5px;letter-spacing:.16em;
+}
+
+.p-sync{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;
+  padding:12px 4px;
+  border-top:1px solid rgba(35,33,29,.10);
+  border-bottom:1px solid rgba(35,33,29,.10);
+}
+.p-sync .k{font-size:11px;letter-spacing:.18em;color:var(--ink-3);}
+.p-sync .v{display:flex;align-items:baseline;gap:3px;}
+.p-sync .v em{
+  font-style:normal;font-family:var(--serif);font-weight:900;font-size:28px;
+  color:var(--cinnabar);letter-spacing:.02em;line-height:1;
+}
+.p-sync .v i{font-style:normal;font-size:12px;color:var(--cinnabar);opacity:.8;}
+
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:20px 0 0;}
+.tags span{
+  font-family:var(--serif);font-size:11.5px;letter-spacing:.1em;
+  color:var(--ink-2);
+  padding:4.5px 11px;
+  border:1px solid rgba(35,33,29,.16);
+  border-radius:1px;
+  background:rgba(255,255,255,.42);
+}
+
+.bars-cap{
+  margin-top:22px;text-align:center;
+  font-size:10px;letter-spacing:.28em;color:var(--ink-3);
+}
+.bars{margin:13px 0 0;display:flex;flex-direction:column;gap:9px;}
+.bar-row{display:flex;align-items:center;gap:10px;}
+.bar-row .bn{
+  flex:0 0 42px;font-family:var(--serif);font-size:11.5px;letter-spacing:.06em;
+  color:var(--ink-2);
+}
+.bar-row .track{
+  position:relative;flex:1;height:6px;background:rgba(35,33,29,.08);border-radius:3px;overflow:hidden;
+}
+.bar-row .bar{
+  position:absolute;left:0;top:0;bottom:0;width:0;
+  background:linear-gradient(90deg,rgba(176,138,76,.55),rgba(176,138,76,.9));
+  border-radius:3px;
+  transition:width 1s cubic-bezier(.2,.9,.3,1);
+}
+.bar-row.top .bar{background:linear-gradient(90deg,var(--cinnabar-soft),var(--cinnabar));}
+.bar-row.top .bn{color:var(--cinnabar);font-weight:700;}
+.bar-row .bv{
+  flex:0 0 30px;text-align:right;font-size:10.5px;color:var(--ink-3);
+  font-variant-numeric:tabular-nums;
+}
+
+.sect{margin-top:24px;}
+.sect-t{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--serif);font-size:12.5px;letter-spacing:.16em;color:var(--ink);
+  margin-bottom:9px;
+}
+.sect-t::before{
+  content:"";width:4px;height:12px;background:var(--cinnabar);opacity:.8;border-radius:1px;
+}
+.sect p{
+  font-size:13.5px;line-height:2;color:var(--ink-2);letter-spacing:.015em;
+  text-align:justify;
+}
+.sect .accent{
+  color:var(--ink);font-weight:500;
+  background:linear-gradient(180deg,transparent 62%,rgba(176,138,76,.22) 62%);
+}
+
+.quote{
+  margin:26px 0 0;
+  padding:18px 18px 16px;
+  background:rgba(158,43,37,.055);
+  border-left:3px solid rgba(158,43,37,.55);
+  border-radius:1px;
+  position:relative;
+}
+.quote .qm{
+  font-family:var(--serif);font-size:30px;line-height:0;color:var(--cinnabar);opacity:.35;
+  position:absolute;left:14px;top:22px;
+}
+.quote q{
+  display:block;
+  font-family:var(--serif);font-size:14.5px;line-height:1.95;
+  letter-spacing:.03em;color:var(--ink);
+  quotes:none;
+  padding-left:16px;
+}
+.quote .who{
+  display:block;margin-top:10px;padding-left:16px;
+  font-size:10.5px;letter-spacing:.2em;color:var(--ink-3);
+}
+
+.p-foot{
+  margin-top:26px;padding-top:14px;padding-right:4px;
+  border-top:1px solid rgba(35,33,29,.10);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.p-foot .f1{
+  font-family:var(--serif);font-size:11px;letter-spacing:.14em;color:var(--ink-2);
+}
+.p-foot .f1 b{color:var(--cinnabar);font-weight:700;}
+.p-foot .f2{font-size:9.5px;letter-spacing:.12em;color:var(--ink-3);text-align:right;line-height:1.6;}
+
+/* 操作区 */
+.actions{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;}
+.actions .btn{
+  flex:1 1 0;min-width:120px;
+  padding:14px 12px;
+  font-size:13.5px;letter-spacing:.16em;
+  border-radius:2px;
+}
+.btn-primary{
+  background:var(--cinnabar);color:#FDF8EC;
+  box-shadow:0 12px 24px -14px rgba(158,43,37,.8);
+}
+.btn-ghost{
+  background:transparent;color:var(--ink);
+  border:1px solid rgba(35,33,29,.22);
+}
+.btn-ghost:hover{border-color:var(--cinnabar);color:var(--cinnabar);}
+.tip{
+  margin-top:14px;text-align:center;
+  font-size:11px;letter-spacing:.08em;color:var(--ink-3);line-height:1.9;
+}
+.toast{
+  position:fixed;left:50%;bottom:calc(34px + env(safe-area-inset-bottom));
+  transform:translate(-50%,14px);
+  background:rgba(35,33,29,.92);color:#FDF8EC;
+  font-size:12px;letter-spacing:.06em;
+  padding:9px 18px;border-radius:20px;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s;
+  z-index:60;white-space:nowrap;
+}
+.toast.on{opacity:1;transform:translate(-50%,0);}
+
+/* ===================== 动画 ===================== */
+@keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+@keyframes cardIn{from{opacity:0;transform:translateX(26px);}to{opacity:1;transform:none;}}
+@keyframes cardOut{from{opacity:1;transform:none;}to{opacity:0;transform:translateX(-22px);}}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+}
+
+/* ===================== 大屏适配 ===================== */
+@media (min-width:768px){
+  .shell{max-width:600px;padding:0 26px 40px;}
+  .qtext{font-size:23px;}
+  .opt{font-size:15px;}
+  .poster{padding:38px 32px 30px;}
+}
+@media (min-width:1100px){
+  body::before{
+    background:
+      radial-gradient(circle at 12% 10%, rgba(176,138,76,.16), transparent 40%),
+      radial-gradient(circle at 88% 88%, rgba(62,92,84,.16), transparent 44%),
+      linear-gradient(180deg,#F6F1E5,#EDE5D3);
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ============ 视图：首页 ============ -->
+  <section class="view intro" id="view-intro">
+    <div class="intro-seal"><b>灵</b><b>魂</b></div>
+    <div class="kicker">CHINESE · SOUL · ARCHETYPE</div>
+    <h1 style="margin-top:18px;">测测你的灵魂<br>对应哪位<span class="hl">中国历史人物</span></h1>
+    <p class="lead">不讲历史知识，只问你怎么过日子。<br>四十道生活化的选择题，照见你骨子里的那点底色。</p>
+    <div class="meta"><span>40 题</span><i></i><span>约 4 分钟</span><i></i><span>无需注册</span></div>
+    <button class="btn intro-start" id="startBtn">开 始 测 试</button>
+    <p class="intro-note">没有标准答案，选最像你第一反应的那一项。<br>趣味人格测试 · 非历史考试 · 非心理诊断</p>
+    <div class="intro-foot">七种人格底色 · 十四位历史人物</div>
+  </section>
+
+  <!-- ============ 视图：答题 ============ -->
+  <section class="view quiz" id="view-quiz" hidden>
+    <div class="quiz-head">
+      <div class="qcount">第 <em id="qNow">01</em> <span>/ 40 题</span></div>
+      <button class="back-btn" id="backBtn" disabled>← 上一题</button>
+    </div>
+    <div class="progress">
+      <div class="fill" id="pFill"></div>
+      <div class="dot" id="pDot"></div>
+    </div>
+    <div class="qcard" id="qcard">
+      <div class="qtag" id="qtag">日常</div>
+      <h2 class="qtext" id="qtext">题目</h2>
+      <div class="opts" id="opts"></div>
+    </div>
+    <div class="quiz-hint" id="quizHint">选择后自动进入下一题 · 电脑可按 1 2 3 4</div>
+  </section>
+
+  <!-- ============ 视图：结果 ============ -->
+  <section class="view result" id="view-result" hidden>
+    <div class="result-top"><div class="tag">你 的 灵 魂 图 谱</div></div>
+    <div class="poster" id="poster">
+      <div class="corner c-tl"></div><div class="corner c-tr"></div>
+      <div class="corner c-bl"></div><div class="corner c-br"></div>
+      <div class="poster-body" id="posterBody"></div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="againBtn">再 测 一 次</button>
+      <button class="btn btn-ghost" id="copyBtn">复 制 我 的 结 果</button>
+    </div>
+    <p class="tip">长按或截图保存这张图谱，可直接发小红书 / 朋友圈</p>
+  </section>
+
+</div>
+
+<div class="toast" id="toast">已复制</div>
+
+<script>
+/* ============================================================
+   1. 维度定义
+   ============================================================ */
+const DIMS = {
+  emperor:    { name:'帝王', color:'#9E2B25' },
+  strategist: { name:'谋士', color:'#3E5C54' },
+  scholar:    { name:'文人', color:'#6B5A3E' },
+  knight:     { name:'侠客', color:'#4A4A4A' },
+  poet:       { name:'诗人', color:'#8A5A78' },
+  general:    { name:'将领', color:'#5A5142' },
+  hermit:     { name:'隐士', color:'#4E6B5C' }
+};
+const DIM_KEYS = Object.keys(DIMS);
+// 并列时的稳定优先序（避免每轮结果漂移）
+const TIE_ORDER = ['strategist','poet','scholar','knight','general','emperor','hermit'];
+
+/* ============================================================
+   2. 四十道题：每题 4 个选项，选项第二项为该选项归属的维度
+   ============================================================ */
+const QS = [
+/* —— 日常节奏 —— */
+ {sec:'日常节奏', q:'周末早上自然醒，你的第一个动作通常是？', opts:[
+   ['躺着先把今天要做的事在脑子里过一遍','strategist'],
+   ['立刻起床，今天排得满满的','general'],
+   ['摸手机，看看有没有新的消息和回应','scholar'],
+   ['什么也不安排，想到哪算哪','hermit']]},
+ {sec:'日常节奏', q:'你的相册里，数量最多的是哪一类？', opts:[
+   ['天空、云、路边忽然好看的光','poet'],
+   ['截图：干货、备忘、待办事项','strategist'],
+   ['家人朋友的照片，舍不得删','scholar'],
+   ['自己运动或干活的视频','general']]},
+ {sec:'日常节奏', q:'出门前的最后一件事，你通常会做？', opts:[
+   ['核对行程、证件、要带的东西','strategist'],
+   ['照一下镜子，确定今天的状态','poet'],
+   ['跟家里人打声招呼再走','scholar'],
+   ['抓起钥匙就走，不折腾','hermit']]},
+ {sec:'日常节奏', q:'你的房间更接近哪一种描述？', opts:[
+   ['整齐，但总堆着几摞没读完的书','scholar'],
+   ['东西很少，越空越舒服','hermit'],
+   ['东西多，但每样都知道在哪','strategist'],
+   ['有点乱，可都是自己攒下的东西','knight']]},
+ {sec:'日常节奏', q:'一个人吃饭时，你更在意什么？', opts:[
+   ['吃得快、吃得对，效率优先','general'],
+   ['摆盘、光线、氛围对不对','poet'],
+   ['和谁一起吃，比吃什么重要','knight'],
+   ['随便，能填饱就行','hermit']]},
+ {sec:'日常节奏', q:'走路的时候，你的默认速度是？', opts:[
+   ['偏快，像身上带着任务','general'],
+   ['不快不慢，会为路边什么停下来','poet'],
+   ['跟着同行的人，走一样的节奏','scholar'],
+   ['看心情，有时候很慢','hermit']]},
+ {sec:'日常节奏', q:'你的钱主要花在哪一类？', opts:[
+   ['书、课程、各种工具','scholar'],
+   ['旅行、演出、各种体验','poet'],
+   ['请客、人情、朋友的事','knight'],
+   ['存着，看着数字增长最安心','strategist']]},
+ {sec:'日常节奏', q:'睡前最后十分钟，你多半在做什么？', opts:[
+   ['复盘今天，想明天怎么走','strategist'],
+   ['刷点有意思的，笑着睡着','poet'],
+   ['看点长文字，读几页书','scholar'],
+   ['发呆，什么都不想','hermit']]},
+
+/* —— 处事方式 —— */
+ {sec:'处事方式', q:'接到一件从没做过的事，你的第一步是？', opts:[
+   ['先想清楚目标和路径，列个计划','strategist'],
+   ['直接上手，边做边改','general'],
+   ['先问问有经验的人怎么办','knight'],
+   ['先判断这事到底值不值得做','hermit']]},
+ {sec:'处事方式', q:'在一个团队里，你最常被推到的位置是？', opts:[
+   ['出主意的那个人','strategist'],
+   ['最后拍板的那个人','emperor'],
+   ['冲在最前面的那个人','general'],
+   ['把大家黏在一起的那个人','knight']]},
+ {sec:'处事方式', q:'和人意见不合时，你更常怎么做？', opts:[
+   ['摆事实讲逻辑，尽量说服对方','strategist'],
+   ['说完自己的立场，不再解释','emperor'],
+   ['先听完，回去再慢慢想','scholar'],
+   ['懒得争，各走各的','hermit']]},
+ {sec:'处事方式', q:'你做大决定时，真正起作用的是？', opts:[
+   ['推演和比较，把各种可能算一遍','strategist'],
+   ['当下的直觉和感觉','poet'],
+   ['责任：谁会被影响得最多','emperor'],
+   ['谁在我身边，我不能丢下谁','knight']]},
+ {sec:'处事方式', q:'面对规则，你的态度通常是？', opts:[
+   ['研究透，然后找最优解','strategist'],
+   ['有用就守，没用就绕','knight'],
+   ['与其遵守，不如自己定','emperor'],
+   ['不参与，退到规则之外','hermit']]},
+ {sec:'处事方式', q:'事情搞砸了，你的第一反应是？', opts:[
+   ['复盘，先找出真正的原因','strategist'],
+   ['先把影响控住，别继续扩大','general'],
+   ['情绪先上来，需要一个人待一会儿','poet'],
+   ['先处理人：道歉、补救、安抚','knight']]},
+ {sec:'处事方式', q:'别人夸你，你更希望听到哪一句？', opts:[
+   ['你脑子是真好使','strategist'],
+   ['跟着你干，心里踏实','emperor'],
+   ['你是真有才','poet'],
+   ['你这个人，够意思','knight']]},
+ {sec:'处事方式', q:'你最受不了哪一种人？', opts:[
+   ['又蠢又固执，怎么讲都不听','strategist'],
+   ['出事就躲，一点担当都没有','emperor'],
+   ['虚情假意，满嘴客套','hermit'],
+   ['斤斤计较，不讲义气','knight']]},
+
+/* —— 社交模式 —— */
+ {sec:'社交模式', q:'一场聚会里，你多半在做什么？', opts:[
+   ['某个角落，和一个人深聊','scholar'],
+   ['中间，负责带节奏','emperor'],
+   ['到处串，照顾到每个人','knight'],
+   ['找机会早点走','hermit']]},
+ {sec:'社交模式', q:'朋友深夜找你倾诉，你会？', opts:[
+   ['帮他把问题拆开，一条条分析','strategist'],
+   ['先陪着，把情绪接住','poet'],
+   ['直接问：需要我做什么','general'],
+   ['说几句不痛不痒、但让人安心的话','scholar']]},
+ {sec:'社交模式', q:'你的朋友大概是什么结构？', opts:[
+   ['不多，但每一个都很深','scholar'],
+   ['很多，三教九流都有','knight'],
+   ['有几个能一起扛事的','general'],
+   ['一两个，足够了','hermit']]},
+ {sec:'社交模式', q:'有人求你帮忙，你最先想到的是？', opts:[
+   ['他值不值得帮','strategist'],
+   ['我到底能不能帮上','general'],
+   ['帮了他会不会记','emperor'],
+   ['不想了，先帮了再说','knight']]},
+ {sec:'社交模式', q:'你最舒服的社交状态是？', opts:[
+   ['一对一，慢慢聊','scholar'],
+   ['一群人，热热闹闹','emperor'],
+   ['一起做点事，不用多说话','general'],
+   ['独处，或者只和最熟的人待着','hermit']]},
+ {sec:'社交模式', q:'有人当面冒犯你，你会？', opts:[
+   ['冷静回应，把场面重新拿回来','emperor'],
+   ['当场反击，不吃这个亏','knight'],
+   ['先记下，以后再说','general'],
+   ['算了，不值得','hermit']]},
+ {sec:'社交模式', q:'你在群里通常是哪一种？', opts:[
+   ['潜水，只在关键处说一句','strategist'],
+   ['发通知、组织事情的那个','emperor'],
+   ['发段子和图，让大家乐','poet'],
+   ['基本不进群','hermit']]},
+ {sec:'社交模式', q:'遇到喜欢的人，你会？', opts:[
+   ['慢慢靠近，先把对方摸清楚','strategist'],
+   ['直接说，成不成再说','knight'],
+   ['写下来，不一定要给','poet'],
+   ['远远看着就很好','hermit']]},
+
+/* —— 情绪反应 —— */
+ {sec:'情绪反应', q:'压力大的时候，你更常做什么？', opts:[
+   ['做计划，把能控的部分抓回来','strategist'],
+   ['去运动、干活，把力气用掉','general'],
+   ['写点东西、听歌、看剧','poet'],
+   ['一个人走到没人的地方','hermit']]},
+ {sec:'情绪反应', q:'你多久哭一次？', opts:[
+   ['很少，情绪先放到一边','general'],
+   ['看一部剧就能哭','poet'],
+   ['深夜一个人的时候','scholar'],
+   ['不记得上次是什么时候了','hermit']]},
+ {sec:'情绪反应', q:'你最怕失去什么？', opts:[
+   ['掌控感','emperor'],
+   ['自由','hermit'],
+   ['被理解','poet'],
+   ['身边的人','knight']]},
+ {sec:'情绪反应', q:'愤怒的时候，你是什么样子？', opts:[
+   ['沉默，脸先冷下来','emperor'],
+   ['嘴上不饶人','knight'],
+   ['自己消化，过后才爆发','scholar'],
+   ['走开，不再回头','hermit']]},
+ {sec:'情绪反应', q:'深夜你最常想的是？', opts:[
+   ['下一步该怎么走','strategist'],
+   ['那些错过的人和事','poet'],
+   ['我到底想要什么','scholar'],
+   ['人活着到底为了什么','hermit']]},
+ {sec:'情绪反应', q:'被误解的时候，你会？', opts:[
+   ['解释一次，不解释第二次','emperor'],
+   ['无所谓，随他去','hermit'],
+   ['心里很难受，但不太说','poet'],
+   ['找信得过的人说','scholar']]},
+ {sec:'情绪反应', q:'什么最容易让你兴奋？', opts:[
+   ['一个卡了很久的难题终于解开','strategist'],
+   ['一场酣畅淋漓的对抗','general'],
+   ['一次说走就走的出发','knight'],
+   ['一个突然冒出来的念头','poet']]},
+ {sec:'情绪反应', q:'你怎么处理遗憾？', opts:[
+   ['认了，翻篇','emperor'],
+   ['反复回想，想明白为止','scholar'],
+   ['写下来、唱出来','poet'],
+   ['放在心里，慢慢变成要守住的东西','knight']]},
+
+/* —— 兴趣偏好 —— */
+ {sec:'兴趣偏好', q:'你更爱看哪一类片子？', opts:[
+   ['权谋、历史','emperor'],
+   ['文艺、慢节奏','poet'],
+   ['武侠、动作','knight'],
+   ['纪录片、知识类','scholar']]},
+ {sec:'兴趣偏好', q:'你理想的旅行是什么样？', opts:[
+   ['有详细攻略，行程饱满','strategist'],
+   ['一个人，随便走走','hermit'],
+   ['和三五好友，热热闹闹','knight'],
+   ['去一个能拍很多照片的地方','poet']]},
+ {sec:'兴趣偏好', q:'你最欣赏哪一种能力？', opts:[
+   ['谋略','strategist'],
+   ['胆识','general'],
+   ['才华','poet'],
+   ['定力','hermit']]},
+ {sec:'兴趣偏好', q:'四个词里，你更看重哪一个？', opts:[
+   ['格局','emperor'],
+   ['忠义','knight'],
+   ['洒脱','hermit'],
+   ['精进','scholar']]},
+ {sec:'兴趣偏好', q:'你的书架更像哪一种？', opts:[
+   ['经史、笔记、工具书','scholar'],
+   ['诗集、画册','poet'],
+   ['兵法、传记','general'],
+   ['很杂，什么都有一点','knight']]},
+ {sec:'兴趣偏好', q:'你更喜欢哪一种场景？', opts:[
+   ['春夜，灯下读书','scholar'],
+   ['秋日，大风起','general'],
+   ['冬雪，独自远行','hermit'],
+   ['盛夏，江边人声鼎沸','knight']]},
+ {sec:'兴趣偏好', q:'如果给你一间院子，你会？', opts:[
+   ['种满花，晒着太阳发呆','hermit'],
+   ['摆上书桌和一炉茶','scholar'],
+   ['常请朋友来喝酒','knight'],
+   ['修成能干活的地方','general']]},
+ {sec:'兴趣偏好', q:'最后，你希望别人怎么记住你？', opts:[
+   ['一个厉害的人','emperor'],
+   ['一个有趣的人','poet'],
+   ['一个靠得住的人','knight'],
+   ['一个有想法的人','strategist']]}
+];
+
+/* ============================================================
+   3. 十四位历史人物（七种底色 × 各两位）
+   ============================================================ */
+const FIGURES = {
+  emperor: {
+    a: { name:'李世民', dyn:'唐', title:'天可汗 · 贞观之治',
+      tags:['格局','纳谏','知人','果断'],
+      reason:'你身上有一种天然的中心感：不急着证明自己，而是先把对的人放到对的位置。你的强大不在压倒别人，而在让所有人愿意为你出力。你既容得下不同意见，也知道什么时候必须自己拍板。',
+      adv:'你能在嘈杂里听出真正有用的那一句话——这是极稀缺的能力。',
+      egg:'史书里他照镜子想到「以人为镜」，你可能也常在别人的反应里，悄悄校准自己。',
+      quote:'你不需要赢过所有人，你只需要把他们放在对的位置。' },
+    b: { name:'刘邦', dyn:'汉', title:'布衣天子 · 汉高祖',
+      tags:['豁达','识人','务实','能屈能伸'],
+      reason:'你不是最聪明、也不是最能打的那个，但你是最能把人聚起来、把事办成的那个。你懂得示弱，也懂得在关键时刻一步不退。别人靠本领立身，你靠「让人愿意跟你走」。',
+      adv:'脸皮厚、心气足，摔得下去，也起得来。',
+      egg:'他年轻时被说成「无赖」，后来却成了开国的那一个。被小看，对你大概从来不是终点。',
+      quote:'能屈能伸不是没骨气，是清楚自己要去哪。' }
+  },
+  strategist: {
+    a: { name:'诸葛亮', dyn:'蜀汉', type:'', title:'卧龙 · 丞相',
+      tags:['谨密','担当','长算','自省'],
+      reason:'你习惯把事情想到第三步，也习惯先把责任揽到自己身上。别人看到的是你稳，其实你是把所有风险在脑子里过了一遍，才敢说「可以」。你不太会让信任你的人踩空。',
+      adv:'你的靠谱会被人长期记住，这是最贵的信用。',
+      egg:'他写过「鞠躬尽瘁」，也写过一手好字、会做木牛流马——你大概也是那种「什么都想自己动手」的人。',
+      quote:'你把所有的偶然都算过了，所以看起来像运气好。' },
+    b: { name:'张良', dyn:'汉', title:'留侯 · 帝王师',
+      tags:['洞察','轻盈','知止','从容'],
+      reason:'你看得清局，也放得下名。你能在棋盘上落子，也能在局势已定之后，安静地退到棋盘外一步。别人争的是位置，你争的是「不必一直在场」的自由。',
+      adv:'你很少被执念拖住，转身很干净。',
+      egg:'功成之后他选择去学「辟谷导引」，把最风光的位置让了出去——你是不是也常常想「到此为止就好」？',
+      quote:'最高明的谋，是让自己不必一直在场。' }
+  },
+  scholar: {
+    a: { name:'苏轼', dyn:'北宋', title:'东坡居士 · 文豪',
+      tags:['旷达','多才','烟火气','自愈'],
+      reason:'你能在最坏的处境里，找到最好吃的那一口、最好看的那一轮月亮。你的豁达不是天生的，是一次次被生活按下去、又自己爬起来攒出来的。你身上有种让人放松的本事。',
+      adv:'把苦日子过成段子的能力，是稀缺的生存技能。',
+      egg:'他被贬到哪，就把哪的吃食研究一遍，还顺手发明了一道菜。你的手机里，大概也存着不少「哪里好吃」。',
+      quote:'日子给你什么，你就把它做成一桌菜。' },
+    b: { name:'曹雪芹', dyn:'清', title:'《红楼梦》作者',
+      tags:['细腻','共情','深情','观察'],
+      reason:'你能看见别人看不见的细节：一个人说话的停顿、一件旧衣服褪色的地方。你心里装着一整个复杂的人间，所以对人总有几分体谅，也常有几分说不出的累。',
+      adv:'你的共情力，让你成为别人愿意交出秘密的那一种人。',
+      egg:'他十年只写了一部书，改了又改。你大概也有一件「舍不得草草交付」的事。',
+      quote:'你把别人的心事看得太清，所以也活得比别人重一点。' }
+  },
+  knight: {
+    a: { name:'荆轲', dyn:'战国', title:'刺客 · 易水悲歌',
+      tags:['决绝','重诺','孤勇','悲壮'],
+      reason:'你不太会算性价比，你只问这件事该不该做。一旦应下，你会走到最后一步，哪怕心里清楚那一步很可能是终点。你身上有一种让人愿意跟着你走的重量。',
+      adv:'你的承诺有分量，这在一个人人留后路的时代，非常罕见。',
+      egg:'「风萧萧兮易水寒」唱完，他还是去了。你也有那么一两件事，明知不划算，还是非做不可。',
+      quote:'有些事不是因为能成，才去做。' },
+    b: { name:'郭解', dyn:'西汉', title:'游侠 · 江湖名声',
+      tags:['义气','人缘','江湖','担当'],
+      reason:'你不靠头衔立身，靠的是「这个人说话算数」。你的圈子杂、路子广，别人求到你这儿，你很少让人空手回去。你在意的不是规则，是情分。',
+      adv:'你的人际网络，是你最硬的资产。',
+      egg:'史书说他名声大到「别人替他出头都算荣耀」。你的朋友里，大概也有几个愿意为你挡事的人。',
+      quote:'你的名声不在履历上，在别人的口口相传里。' }
+  },
+  poet: {
+    a: { name:'李白', dyn:'唐', title:'诗仙 · 谪仙人',
+      tags:['飘逸','热烈','自由','才气'],
+      reason:'你身上有一股不肯被安排的劲。你宁愿活得起伏，也不要活成标准答案。你的热情来得快、散得也快，但每一次都是真的，所以身边的人总记得你。',
+      adv:'你能把平常的一瞬间说出诗意，这是学不来的天赋。',
+      egg:'他一生都在路上，官做不下去就去游山，游山没钱了就去写诗。你的通勤路上，大概也常有几句没处安放的感慨。',
+      quote:'你不是不踏实，你只是不想踏在别人的地上。' },
+    b: { name:'杜甫', dyn:'唐', title:'诗圣 · 少陵野老',
+      tags:['沉郁','仁厚','担当','悲悯'],
+      reason:'你看见别人的难，会真的难过。你不太会为自己争，却总替别人不平。你的温柔里有重量——不是柔软，是一种能扛事的力量。',
+      adv:'你的共情不是软弱，是别人愿意托付的底气。',
+      egg:'他一生颠沛，写下的却多是别人的苦。你大概也有过「明明自己也不好过，还是先去安慰别人」的时候。',
+      quote:'你把别人的苦放进自己心里，所以你的温柔很沉。' }
+  },
+  general: {
+    a: { name:'韩信', dyn:'西汉', title:'淮阴侯 · 兵仙',
+      tags:['谋战','隐忍','锐利','不甘'],
+      reason:'你能忍，也能等。你受过的轻视没有把你压垮，反而成了后来出手的底气。你要的不是眼前的热闹，是一次彻底的翻盘，而且你清楚自己什么时候该动。',
+      adv:'你能在长期被低估的情况下，依然保持锋利。',
+      egg:'他从别人胯下爬过去的时候，全城都在笑；几年后，全城都在传他的名字。你大概也攒着一口这样的气。',
+      quote:'你不是不争，你在等一个不必解释的时机。' },
+    b: { name:'岳飞', dyn:'南宋', title:'武穆 · 岳家军',
+      tags:['忠勇','自律','正气','硬骨'],
+      reason:'你做事有底线，而且底线一旦确定就不肯挪。你不太会绕弯子，宁可自己吃亏，也要把事情做正。你身上有一种让人放心的硬。',
+      adv:'你的正直会让人觉得「这个人可以托付」，这是最难得的口碑。',
+      egg:'他带兵「冻死不拆屋，饿死不掳掠」——你对某些原则的固执，大概也让身边人又敬又怕。',
+      quote:'你宁可吃亏，也不肯把自己弄脏。' }
+  },
+  hermit: {
+    a: { name:'陶渊明', dyn:'东晋', title:'五柳先生 · 田园诗宗',
+      tags:['淡然','清醒','自洽','田园'],
+      reason:'你不是没有能力进场，你是想明白之后选择退场。你要的东西不多，但每一样都必须是真正自己想要的。你不爱比较，也不太解释。',
+      adv:'你有极强的自我修复力，和不与人比较的定力。',
+      egg:'他当了八十多天县令就辞官回家，说「不为五斗米折腰」。你大概也干过类似的事——为了一口气，放弃一个看上去不错的机会。',
+      quote:'你不是逃，你是选了一个更适合自己的世界。' },
+    b: { name:'庄子', dyn:'战国', title:'南华真人 · 逍遥',
+      tags:['逍遥','通透','奇想','不羁'],
+      reason:'你看问题总比别人高一层，所以很多别人争得头破血流的事，在你眼里有点好笑。你活得松弛，但心里清醒——那种松弛是看懂之后的松弛，不是躺平。',
+      adv:'你能从任何困局里抽身出来，从更高处再看一遍。',
+      egg:'他宁愿在泥里自由地活着，也不肯去做官。你大概也常在心里说：何必呢。',
+      quote:'你不跟世界争，你只是站在旁边笑一笑。' }
+  }
+};
+
+/* 第二位人格落在这些维度时，选 a / b */
+const VARIANT_RULE = {
+  emperor:    s => ['strategist','scholar'].includes(s) ? 'a' : 'b',
+  strategist: s => ['scholar','poet','hermit'].includes(s) ? 'b' : 'a',
+  scholar:    s => ['poet','hermit','knight'].includes(s) ? 'a' : 'b',
+  knight:     s => ['emperor','general','strategist'].includes(s) ? 'a' : 'b',
+  poet:       s => ['general','knight','strategist'].includes(s) ? 'b' : 'a',
+  general:    s => ['emperor','strategist'].includes(s) ? 'a' : 'b',
+  hermit:     s => ['poet','scholar'].includes(s) ? 'a' : 'b'
+};
+
+/* ============================================================
+   4. 状态与工具
+   ============================================================ */
+const TOTAL = QS.length;
+const state = {
+  view: 'intro',
+  idx: 0,
+  answers: new Array(TOTAL).fill(null),
+  busy: false
+};
+
+const $ = id => document.getElementById(id);
+const views = { intro:$('view-intro'), quiz:$('view-quiz'), result:$('view-result') };
+
+function show(v){
+  Object.keys(views).forEach(k => { views[k].hidden = (k !== v); });
+  state.view = v;
+}
+
+function toast(msg){
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('on');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => t.classList.remove('on'), 1800);
+}
+
+/* 每个维度的「出场次数」，用于归一化，避免某维度题多就占便宜 */
+const EXPOSURE = (() => {
+  const c = {}; DIM_KEYS.forEach(k => c[k] = 0);
+  QS.forEach(q => q.opts.forEach(o => c[o[1]]++));
+  return c;
+})();
+
+/* ============================================================
+   5. 计分
+   ============================================================ */
+function score(){
+  const raw = {}; DIM_KEYS.forEach(k => raw[k] = 0);
+  let answered = 0;
+  state.answers.forEach((ai, i) => {
+    if (ai === null) return;
+    answered++;
+    const dim = QS[i].opts[ai][1];
+    if (raw[dim] !== undefined) raw[dim] += 3;
+  });
+  const norm = {};
+  DIM_KEYS.forEach(k => {
+    norm[k] = EXPOSURE[k] ? raw[k] / EXPOSURE[k] : 0; // 0 ~ 3
+  });
+  return { raw, norm, answered };
+}
+
+function rank(norm){
+  return DIM_KEYS.slice().sort((a, b) => {
+    if (Math.abs(norm[b] - norm[a]) > 1e-9) return norm[b] - norm[a];
+    return TIE_ORDER.indexOf(a) - TIE_ORDER.indexOf(b);
+  });
+}
+
+function buildResult(){
+  const { raw, norm, answered } = score();
+  const order = rank(norm);
+  const top = order[0];
+  const second = order[1];
+  const third = order[2];
+
+  const variant = VARIANT_RULE[top](second);
+  const fig = FIGURES[top][variant];
+
+  /* 同频度：靠「第一名与第二名拉开多少」来算，不虚构精确度 */
+  const gap = norm[top] > 0 ? (norm[top] - norm[second]) / norm[top] : 0;
+  let sync = Math.round(66 + 32 * Math.max(0, gap));
+  sync = Math.max(68, Math.min(95, sync));
+  if (answered < TOTAL) sync = Math.min(sync, 90);
+
+  /* 条形图按「最强的那个维度 = 100%」等比缩放，视觉上更好读 */
+  const peak = Math.max(norm[top], 0.001);
+  const percent = {};
+  DIM_KEYS.forEach(k => {
+    percent[k] = Math.max(9, Math.min(100, Math.round(norm[k] / peak * 100)));
+  });
+
+  return {
+    top, second, third, fig, sync, percent, norm, answered,
+    secondName: DIMS[second].name,
+    secondFigure: FIGURES[second][VARIANT_RULE[second](third)].name
+  };
+}
+
+/* ============================================================
+   6. 答题页渲染
+   ============================================================ */
+const NUMERALS = ['一','二','三','四'];
+
+function renderQuiz(dir){
+  const i = state.idx;
+  const q = QS[i];
+
+  $('qNow').textContent = String(i + 1).padStart(2, '0');
+  $('qtag').textContent = q.sec;
+  $('qtext').textContent = q.q;
+
+  const pct = (i / TOTAL) * 100;
+  $('pFill').style.width = pct + '%';
+  $('pDot').style.left = pct + '%';
+
+  const box = $('opts');
+  box.innerHTML = '';
+  q.opts.forEach((o, oi) => {
+    const b = document.createElement('button');
+    b.className = 'opt' + (state.answers[i] === oi ? ' sel' : '');
+    b.type = 'button';
+    b.innerHTML = '<span class="num">' + NUMERALS[oi] + '</span><span class="txt"></span>';
+    b.querySelector('.txt').textContent = o[0];
+    b.addEventListener('click', () => choose(oi));
+    box.appendChild(b);
+  });
+
+  $('backBtn').disabled = (i === 0);
+  $('quizHint').textContent = i === 0 ? '选一个最像你的 · 电脑可按 1 2 3 4 键' : '选择后自动进入下一题';
+
+  const card = $('qcard');
+  card.classList.remove('out');
+  card.style.animation = 'none';
+  void card.offsetWidth;
+  card.style.animation = '';
+}
+
+function choose(oi){
+  if (state.busy) return;
+  state.busy = true;
+  state.answers[state.idx] = oi;
+
+  // 高亮选中项
+  const btns = Array.from($('opts').children);
+  btns.forEach((b, k) => b.classList.toggle('sel', k === oi));
+
+  setTimeout(() => {
+    const card = $('qcard');
+    card.classList.add('out');
+    setTimeout(() => {
+      card.classList.remove('out');
+      if (state.idx < TOTAL - 1){
+        state.idx++;
+        renderQuiz();
+        state.busy = false;
+      } else {
+        finish();
+        state.busy = false;
+      }
+    }, 240);
+  }, 190);
+}
+
+function back(){
+  if (state.busy || state.idx === 0) return;
+  state.idx--;
+  renderQuiz();
+}
+
+/* ============================================================
+   7. 结果页渲染
+   ============================================================ */
+function renderResult(){
+  const r = buildResult();
+  const f = r.fig;
+  const arche = DIMS[r.top].name;
+
+  const bars = DIM_KEYS
+    .slice()
+    .sort((a, b) => r.percent[b] - r.percent[a])
+    .map(k => `
+      <div class="bar-row ${k === r.top ? 'top' : ''}">
+        <div class="bn">${DIMS[k].name}</div>
+        <div class="track"><div class="bar" data-w="${r.percent[k]}"></div></div>
+        <div class="bv">${r.percent[k]}%</div>
+      </div>`).join('');
+
+  $('posterBody').innerHTML = `
+    <div class="p-label"><b>灵 魂 人 格 图 谱</b>SOUL ARCHETYPE</div>
+
+    <div class="p-hero">
+      <div class="seal-big"><span>${arche[0]}</span><span>${arche[1]}</span></div>
+      <div class="p-name">
+        <h2>${f.name}</h2>
+        <div class="sub">
+          <span class="arche">${arche}型</span>
+          <span>${f.dyn} · ${f.title}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-sync">
+      <div class="k">灵 魂 同 频 度</div>
+      <div class="v"><em>${r.sync}</em><i>%</i></div>
+    </div>
+
+    <div class="tags">${f.tags.map(t => `<span>${t}</span>`).join('')}</div>
+
+    <div class="bars-cap">七 维 人 格 底 色 分 布</div>
+    <div class="bars">${bars}</div>
+
+    <div class="sect">
+      <div class="sect-t">为 什 么 是 他</div>
+      <p>${f.reason}</p>
+    </div>
+
+    <div class="sect">
+      <div class="sect-t">你 的 隐 藏 优 势</div>
+      <p>${f.adv}</p>
+    </div>
+
+    <div class="sect">
+      <div class="sect-t">趣 味 彩 蛋</div>
+      <p>${f.egg}</p>
+    </div>
+
+    <div class="quote">
+      <span class="qm">“</span>
+      <q>${f.quote}</q>
+      <span class="who">—— 说 给 ${f.name} 型 的 你</span>
+    </div>
+
+    <div class="p-foot">
+      <div class="f1">第二底色：<b>${r.secondName}</b> · ${r.secondFigure}</div>
+      <div class="f2">趣味人格测试<br>仅供娱乐 · 非心理诊断</div>
+    </div>
+  `;
+
+  // 条形图延迟动画
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      $('posterBody').querySelectorAll('.bar').forEach(b => {
+        b.style.width = b.dataset.w + '%';
+      });
+    }, 60);
+  });
+
+  buildCopyText(r);
+}
+
+let copyCache = '';
+function buildCopyText(r){
+  const f = r.fig;
+  copyCache =
+`【我的灵魂历史人物】${f.name}（${f.dyn}·${DIMS[r.top].name}型）
+同频度 ${r.sync}% · 关键词：${f.tags.join('/')}
+${f.quote}
+第二底色：${r.secondName} · ${r.secondFigure}
+—— 测测你的灵魂对应哪位中国历史人物`;
+}
+
+/* ============================================================
+   8. 流程控制
+   ============================================================ */
+function start(){
+  state.idx = 0;
+  state.answers = new Array(TOTAL).fill(null);
+  state.busy = false;
+  show('quiz');
+  renderQuiz();
+  window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+}
+
+function finish(){
+  show('result');
+  renderResult();
+  window.scrollTo({ top: 0, behavior: 'auto' });
+}
+
+/* ============================================================
+   9. 事件绑定
+   ============================================================ */
+$('startBtn').addEventListener('click', start);
+$('backBtn').addEventListener('click', back);
+$('againBtn').addEventListener('click', start);
+
+$('copyBtn').addEventListener('click', async () => {
+  if (!copyCache) return;
+  try {
+    if (navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(copyCache);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = copyCache;
+      ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    }
+    toast('结果文案已复制');
+  } catch (e){
+    toast('复制失败，请长按选择文字');
+  }
+});
+
+/* 键盘：1-4 选择，← 返回 */
+document.addEventListener('keydown', e => {
+  if (state.view !== 'quiz' || state.busy) return;
+  if (e.key >= '1' && e.key <= '4'){
+    const oi = parseInt(e.key, 10) - 1;
+    if (oi < QS[state.idx].opts.length) choose(oi);
+  } else if (e.key === 'ArrowLeft'){
+    back();
+  }
+});
+
+/* 手机端左右滑动返回上一题 */
+let touchX = null, touchY = null;
+document.addEventListener('touchstart', e => {
+  if (state.view !== 'quiz') return;
+  touchX = e.changedTouches[0].clientX;
+  touchY = e.changedTouches[0].clientY;
+}, { passive:true });
+document.addEventListener('touchend', e => {
+  if (state.view !== 'quiz' || touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  const dy = e.changedTouches[0].clientY - touchY;
+  if (dx > 90 && Math.abs(dy) < 50) back();
+  touchX = touchY = null;
+}, { passive:true });
+</script>
+</body>
+</html>
